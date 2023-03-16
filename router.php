@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function($class){
-    include($class . ".php");
+    include(str_replace("\\", "/", $class) . ".php");
 });
 
 preg_match_all("#\/([a-zA-Z]*)\/?([0-9]*)#", $_SERVER['REQUEST_URI'], $match);
