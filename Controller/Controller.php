@@ -4,16 +4,24 @@ namespace Controller;
 
 class Controller
 {
+    private $viewParams;
     public function __construct()
     {
-        
+        $this->viewParams = [];
     }
 
     public function JSON($data){
+        header("Content-Type: application/json");
         echo json_encode($data);
     }
 
     public function View($template){
-        //affiche le fichier /View/{$template}.php
+        extract($this->viewParams);
+        header("Content-Type: text/html");
+        include("View/".$template.".php");
+    }
+
+    public function addViewParams($name,$value){
+        $this->viewParams[$name] = $value;
     }
 }

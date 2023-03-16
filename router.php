@@ -14,7 +14,7 @@ $controllerName = "\\Controller\\" . ucfirst($match[1][0]) . "Controller";
 
 $controller = new $controllerName();
 
-header("Content-Type: application/json");
+
 
 
 switch ($method) {
