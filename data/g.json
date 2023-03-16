@@ -1,0 +1,53 @@
+{
+    "id": 16,
+    "list": [{
+            "id": 1,
+            "name":"AK"
+        },{
+            "id": 2,
+            "name":"BAn"
+        },{
+            "id": 3,
+            "name":"BAd"
+        },{
+            "id": 4,
+            "name":"CF"
+        },{
+            "id": 5,
+            "name":"DC"
+        },{
+            "id": 6,
+            "name":"HY"
+        },{
+            "id": 7,
+            "name":"LKi"
+        },{
+            "id": 8,
+            "name":"LP"
+        },{
+            "id": 9,
+            "name":"LKe"
+        },{
+            "id": 10,
+            "name":"LM"
+        },{
+            "id": 11,
+            "name":"LE"
+        },{
+            "id": 12,
+            "name":"MR"
+        },{
+            "id": 13,
+            "name":"MV"
+        },{
+            "id": 14,
+            "name":"SM"
+        },{
+            "id": 15,
+            "name":"SH"
+        },{
+            "id": 16,
+            "name":"VG"
+        }
+    ]
+}
