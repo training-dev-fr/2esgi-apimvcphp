@@ -1,2 +1,3 @@
+Require all granted
 RewriteEngine On
 FallbackResource /router2.php
