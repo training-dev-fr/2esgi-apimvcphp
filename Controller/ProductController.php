@@ -2,19 +2,25 @@
 
 namespace Controller;
 
-include("./Model/product.model.php");
 
 
 class ProductController
 {
+    private $productManager;
+
+    public function __construct()
+    {
+        $this->productManager = new \Model\Product();
+    }
+
     function getAll()
     {
-        echo json_encode(\Model\Product\getAll());
+        echo json_encode($this->productManager->getAll());
     }
 
     function getOne($id)
     {
-        echo json_encode(\Model\Product\getOne($id));
+        echo json_encode($this->productManager->getOne($id));
     }
 
     function create()
@@ -22,7 +28,7 @@ class ProductController
         $product = new \stdClass();
         $product->name = $_POST["name"];
         $product->price = $_POST["price"];
-        \Model\Product\create($product);
+        $this->productManager->create($product);
         echo '{"message":"Produit créé"}';
     }
 
@@ -33,7 +39,7 @@ class ProductController
         $product->id = $id;
         $product->name = $data->name;
         $product->price = $data->price;
-        if (\Model\Product\update($product)) {
+        if ($this->productManager->update($product)) {
             echo '{"message":"Produit mis à jour"}';
         } else {
             return '{"message":"Produit non trouvé"}';
@@ -42,7 +48,7 @@ class ProductController
 
     function delete($id)
     {
-        if (\Model\Product\delete($id)) {
+        if ($this->productManager->delete($id)) {
             echo '{"message":"Produit supprimé"}';
         } else {
             return '{"message":"Produit non trouvé"}';
