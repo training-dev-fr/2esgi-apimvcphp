@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-class UserController
+class UserController extends Controller
 {
     private $userManager;
 
@@ -13,12 +13,12 @@ class UserController
 
     function getAll()
     {
-        echo json_encode($this->userManager->getAll());
+        $this->JSON($this->userManager->getAll());
     }
 
     function getOne($id)
     {
-        echo json_encode($this->userManager->getOne($id));
+        $this->JSON($this->userManager->getOne($id));
     }
 
     function create()

@@ -4,7 +4,7 @@ namespace Controller;
 
 
 
-class ProductController
+class ProductController extends Controller
 {
     private $productManager;
 
@@ -15,12 +15,12 @@ class ProductController
 
     function getAll()
     {
-        echo json_encode($this->productManager->getAll());
+        $this->JSON($this->productManager->getAll());
     }
 
     function getOne($id)
     {
-        echo json_encode($this->productManager->getOne($id));
+        $this->JSON($this->productManager->getOne($id));
     }
 
     function create()

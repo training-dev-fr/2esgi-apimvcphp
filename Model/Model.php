@@ -15,6 +15,7 @@ class Model
         $data = file_get_contents("data/" . $this->name . ".json");
         return json_decode($data);
     }
+    
     function getAll()
     {
         return $this->getData()->list;
