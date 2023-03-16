@@ -7,17 +7,17 @@ include("./Model/product.model.php");
 
 class ProductController
 {
-    function getAllProducts()
+    function getAll()
     {
         echo json_encode(\Model\Product\getAll());
     }
 
-    function getOneProduct($id)
+    function getOne($id)
     {
         echo json_encode(\Model\Product\getOne($id));
     }
 
-    function createProduct()
+    function create()
     {
         $product = new \stdClass();
         $product->name = $_POST["name"];
@@ -26,7 +26,7 @@ class ProductController
         echo '{"message":"Produit créé"}';
     }
 
-    function updateProduct($id)
+    function update($id)
     {
         $data = json_decode(file_get_contents("php://input"));
         $product = new \stdClass();
@@ -40,7 +40,7 @@ class ProductController
         }
     }
 
-    function deleteProduct($id)
+    function delete($id)
     {
         if (\Model\Product\delete($id)) {
             echo '{"message":"Produit supprimé"}';
