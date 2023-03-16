@@ -1,14 +1,17 @@
 <?php
-    namespace Controller;
-    include("./Model/product.model.php");
 
-    
+namespace Controller;
 
+include("./Model/product.model.php");
+
+
+class ProductController
+{
     function getAllProducts()
     {
         echo json_encode(\Model\Product\getAll());
     }
- 
+
     function getOneProduct($id)
     {
         echo json_encode(\Model\Product\getOne($id));
@@ -19,7 +22,7 @@
         $product = new \stdClass();
         $product->name = $_POST["name"];
         $product->price = $_POST["price"];
-        \Model\Model\Product\create($product);
+        \Model\Product\create($product);
         echo '{"message":"Produit créé"}';
     }
 
@@ -30,18 +33,19 @@
         $product->id = $id;
         $product->name = $data->name;
         $product->price = $data->price;
-        if(\Model\Model\Product\update($product)){
+        if (\Model\Product\update($product)) {
             echo '{"message":"Produit mis à jour"}';
-        }else{
+        } else {
             return '{"message":"Produit non trouvé"}';
         }
     }
 
     function deleteProduct($id)
     {
-        if(\Model\Model\Product\delete($id)){
+        if (\Model\Product\delete($id)) {
             echo '{"message":"Produit supprimé"}';
-        }else{
+        } else {
             return '{"message":"Produit non trouvé"}';
         }
     }
+}

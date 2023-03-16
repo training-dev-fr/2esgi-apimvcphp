@@ -1,2 +1,2 @@
 RewriteEngine On
-FallbackResource /router.php
+FallbackResource /router2.php
