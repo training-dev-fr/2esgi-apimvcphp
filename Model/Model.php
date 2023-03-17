@@ -5,9 +5,11 @@ namespace Model;
 class Model
 {
     private $name;
+    protected $db;
 
     public function __construct($name){
         $this->name = $name;
+        $this->db = (new \Model\Bdd())->db;
     }
 
     function getData()
@@ -16,9 +18,16 @@ class Model
         return json_decode($data);
     }
     
+    // function getAll()
+    // {
+    //     return $this->getData()->list;
+    // }
+
     function getAll()
     {
-        return $this->getData()->list;
+        $req = $this->db->prepare("SELECT * FROM user");
+        $req->execute();
+        return $req->fetchAll();
     }
     
     function getOne($id)

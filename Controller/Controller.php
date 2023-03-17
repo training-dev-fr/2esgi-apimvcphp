@@ -5,6 +5,7 @@ namespace Controller;
 class Controller
 {
     private $viewParams;
+    
     public function __construct()
     {
         $this->viewParams = [];

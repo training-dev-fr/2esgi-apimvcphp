@@ -1,0 +1,74 @@
+{
+    "1": [
+        {
+            "id": 8,
+            "name": "Lazaro Paul"
+        },
+        {
+            "id": 1,
+            "name": "Achouitar Kamal"
+        },
+        {
+            "id": 10,
+            "name": "Lopez Maxime"
+        },
+        {
+            "id": 15,
+            "name": "Stawiarski Hugo"
+        }
+    ],
+    "2": [
+        {
+            "id": 11,
+            "name": "Loubelle Elsa"
+        },
+        {
+            "id": 6,
+            "name": "Hannous Younes"
+        },
+        {
+            "id": 2,
+            "name": "Battaire Antoine"
+        },
+        {
+            "id": 14,
+            "name": "Sow Moustapha"
+        }
+    ],
+    "3": [
+        {
+            "id": 9,
+            "name": "Legrand Kevin"
+        },
+        {
+            "id": 3,
+            "name": "Bernard Adam"
+        },
+        {
+            "id": 5,
+            "name": "Duhem Célian"
+        },
+        {
+            "id": 13,
+            "name": "Meresse Valentin"
+        }
+    ],
+    "4": [
+        {
+            "id": 16,
+            "name": "Valentin Guilhem"
+        },
+        {
+            "id": 12,
+            "name": "Massiet Remy"
+        },
+        {
+            "id": 4,
+            "name": "Copitet Florian"
+        },
+        {
+            "id": 7,
+            "name": "Lahaye Killian"
+        }
+    ]
+}
