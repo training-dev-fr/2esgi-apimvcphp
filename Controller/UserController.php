@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use stdClass;
+
 class UserController extends Controller
 {
     private $userManager;
@@ -13,10 +15,10 @@ class UserController extends Controller
 
     function getAll()
     {
-        // $listuser = $this->userManager->getAll();
-        // $this->addViewParams("users",$listuser);
-        // $this->View("listuser");
-        $this->JSON($this->userManager->getAll());
+        $listuser = $this->userManager->getAll();
+        $this->addViewParams("users",$listuser);
+        $this->View("listuser");
+        //$this->JSON($this->userManager->getAll());
     }
 
     function getOne($id)
@@ -30,8 +32,11 @@ class UserController extends Controller
         $user->firstname = $_POST["firstname"];
         $user->lastname = $_POST["lastname"];
         $user->birthday = $_POST["birthday"];
+        $user->login = $_POST["login"];
+        $user->password = $_POST["password"];
         $this->userManager->create($user);
-        echo '{"message":"Utilisateur créé"}';
+
+        $this->JSONMessage("Utilisateur créé");
     }
 
     function update($id)
@@ -43,18 +48,18 @@ class UserController extends Controller
         $user->lastname = $data->lastname;
         $user->birthday = $data->birthday;
         if ($this->userManager->update($user)) {
-            echo '{"message":"Utilisateur mis à jour"}';
+            $this->JSONMessage("Utilisateur mis à jour");
         } else {
-            return '{"message":"Utilisateur non trouvé"}';
+            $this->JSONMessage("Utilisateur non trouvé");
         }
     }
 
     function delete($id)
     {
         if ($this->userManager->delete($id)) {
-            echo '{"message":"Utilisateur supprimé"}';
+            $this->JSONMessage("Utilisateur supprimé");
         } else {
-            return '{"message":"Utilisateur non trouvé"}';
+            $this->JSONMessage("Utilisateur non trouvé");
         }
     }
 }

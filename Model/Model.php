@@ -9,68 +9,87 @@ class Model
 
     public function __construct($name){
         $this->name = $name;
-        $this->db = (new \Model\Bdd())->db;
+        $this->db = (\Model\Bdd::getInstance())->db;
     }
-
-    function getData()
-    {
-        $data = file_get_contents("data/" . $this->name . ".json");
-        return json_decode($data);
-    }
-    
-    // function getAll()
-    // {
-    //     return $this->getData()->list;
-    // }
 
     function getAll()
     {
-        $req = $this->db->prepare("SELECT * FROM user");
+        $req = $this->db->prepare("SELECT * FROM " . $this->name);
         $req->execute();
+        $req->setFetchMode(\PDO::FETCH_OBJ);
+        return $req->fetchAll();
+    }
+
+    function getOne($id)
+    {
+        $req = $this->db->prepare("SELECT * FROM " . $this->name . " WHERE id=?");
+        $req->execute(array($id));
+        $req->setFetchMode(\PDO::FETCH_OBJ);
         return $req->fetchAll();
     }
     
-    function getOne($id)
-    {
-        $data = $this->getData();
-        $result = array_filter($data->list, function ($user) use ($id) {
-            return $user->id == $id;
-        });
-        return array_shift($result);
-    }
-    
+
+
     function create($object)
-    {
-        $data = $this->getData();
-    
-        $object->id = ++$data->id;
-        $data->list[] = $object;
-        file_put_contents("data/" . $this->name . ".json", json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    }
-    
-    function update($object)
-    {
-        $data = $this->getData();
-        $key = array_search($object->id, array_column($data->list, 'id'));
-        if ($key !== false) {
-            $data->list = array_replace($data->listProduct, array($key => $object));
-            file_put_contents("data/" . $this->name . ".json", json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    {   
+        $sql = "INSERT INTO " . $this->name;
+        $sqlField = array();
+        $sqlValue = array();
+        
+        foreach($object as $key => $value){
+            $sqlField[] = $key;
+            $sqlValue[] = $value;
+        }
+
+        $sql .= "(". implode(",",$sqlField) .") VALUE(" . implode(",",array_fill(0,count($sqlValue),"?")) . ")";
+
+
+        $req = $this->db->prepare($sql);
+        $req->execute($sqlValue);
+
+        if($req->rowCount() == 1){
             return true;
-        } else {
+        }else{
             return false;
         }
     }
     
+    function update($object)
+    {
+        $id = $object->id;
+        unset($object->id);
+
+        $sql = "UPDATE " . $this->name . " SET ";
+
+        $sqlField = array();
+        $sqlValue = array();
+
+        foreach($object as $key=>$value){
+            $sqlField[] = $key . "=?";
+            $sqlValue[] = $value;
+        }
+
+        $sql .= implode(",",$sqlField) . "WHERE id=?";
+
+        $sqlValue[] = $id;
+
+        $req = $this->db->prepare($sql);
+        $req->execute($sqlValue);
+        if($req->rowCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
+
+       //UPDATE user SET firstname=?,lastname=?... WHERE id=?
+       //UPDATE product SET name=?,price=?... WHERE id=?
+    }
+
     function delete($id)
     {
-        $data = $this->getData();
-        $before = count($data->list);
-    
-        $data->list = array_filter($data->list, function ($element) use ($id) {
-            return $element->id != $id;
-        });
-        if($before == count($data->list) +1){
-            file_put_contents("data/" . $this->name . ".json", json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        $req = $this->db->prepare("DELETE FROM " . $this->name . " WHERE id=?");
+        $req->execute(array($id));
+        if($req->rowCount() == 1){
             return true;
         }else{
             return false;

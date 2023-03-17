@@ -2,10 +2,18 @@
     namespace Model;
     class Bdd{
         public $db;
-        public function __construct()
+        private static $instance;
+
+        private function __construct()
         {
             $this->db = new \PDO('mysql:host=localhost;dbname=2esgi-apimvc', "root", "");
+        }
 
-            var_dump($this->db);
+        public static function getInstance()
+        {
+            if(empty(self::$instance)){
+                self::$instance = new Bdd();
+            }
+            return self::$instance;
         }
 }

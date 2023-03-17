@@ -16,6 +16,12 @@ class Controller
         echo json_encode($data);
     }
 
+    public function JSONMessage($message){
+        $res = new \stdClass();
+        $res->message = $message;
+        $this->JSON($res);
+    }
+
     public function View($template){
         extract($this->viewParams);
         header("Content-Type: text/html");
