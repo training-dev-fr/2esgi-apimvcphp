@@ -6,4 +6,12 @@ class User extends \Model\Model{
     {
         parent::__construct("user");
     }
+
+    public function getUserByEmail($email)
+    {
+        $req = $this->db->prepare("SELECT * FROM user WHERE email=?");
+        $req->execute(array($email));
+        $req->setFetchMode(\PDO::FETCH_OBJ);
+        return $req->fetch();
+    }
 }

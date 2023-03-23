@@ -1,0 +1,64 @@
+[{
+    "path": "/User/Signin",
+    "method": "POST",
+    "controller": "User",
+    "action": "signin"
+}, {
+    "path": "/User/Login",
+    "method": "POST",
+    "controller": "User",
+    "action": "login"
+}, {
+    "path": "/User",
+    "method": "GET",
+    "controller": "User",
+    "action": "getAll",
+    "auth": true
+}, {
+    "path": "/User/([0-9]*)",
+    "method": "GET",
+    "controller": "User",
+    "action": "getOne",
+    "param": ["id"]
+}, {
+    "path": "/User",
+    "method": "POST",
+    "controller": "User",
+    "action": "create"
+}, {
+    "path": "/User/([0-9]*)",
+    "method": "PUT",
+    "controller": "User",
+    "action": "update",
+    "param": ["id"]
+}, {
+    "path": "/User",
+    "method": "DELETE",
+    "controller": "User",
+    "action": "delete"
+}, {
+    "path": "/Product",
+    "method": "GET",
+    "controller": "Product",
+    "action": "getAll"
+}, {
+    "path": "/Product/([0-9]*)",
+    "method": "GET",
+    "controller": "Product",
+    "action": "getOne"
+}, {
+    "path": "/Product",
+    "method": "POST",
+    "controller": "Product",
+    "action": "create"
+}, {
+    "path": "/Product",
+    "method": "PUT",
+    "controller": "Product",
+    "action": "update"
+}, {
+    "path": "/Product",
+    "method": "DELETE",
+    "controller": "Product",
+    "action": "delete"
+}]

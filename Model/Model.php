@@ -25,11 +25,9 @@ class Model
         $req = $this->db->prepare("SELECT * FROM " . $this->name . " WHERE id=?");
         $req->execute(array($id));
         $req->setFetchMode(\PDO::FETCH_OBJ);
-        return $req->fetchAll();
+        return $req->fetch();
     }
     
-
-
     function create($object)
     {   
         $sql = "INSERT INTO " . $this->name;
@@ -80,9 +78,6 @@ class Model
         }else{
             return false;
         }
-
-       //UPDATE user SET firstname=?,lastname=?... WHERE id=?
-       //UPDATE product SET name=?,price=?... WHERE id=?
     }
 
     function delete($id)
