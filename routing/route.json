@@ -84,8 +84,9 @@
     "action": "update",
     "param": ["id"]
 }, {
-    "path": "/Post",
+    "path": "/Post/([0-9]*)",
     "method": "DELETE",
     "controller": "Post",
-    "action": "delete"
+    "action": "delete",
+    "param": ["id"]
 }]
