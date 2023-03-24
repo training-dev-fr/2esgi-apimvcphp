@@ -64,26 +64,28 @@
 },  {
     "path": "/Post",
     "method": "GET",
-    "controller": "Product",
+    "controller": "Post",
     "action": "getAll"
 }, {
     "path": "/Post/([0-9]*)",
     "method": "GET",
-    "controller": "Product",
-    "action": "getOne"
+    "controller": "Post",
+    "action": "getOne",
+    "param": ["id"]
 }, {
     "path": "/Post",
     "method": "POST",
-    "controller": "Product",
+    "controller": "Post",
     "action": "create"
 }, {
-    "path": "/Post",
+    "path": "/Post/([0-9]*)",
     "method": "PUT",
-    "controller": "Product",
-    "action": "update"
+    "controller": "Post",
+    "action": "update",
+    "param": ["id"]
 }, {
     "path": "/Post",
     "method": "DELETE",
-    "controller": "Product",
+    "controller": "Post",
     "action": "delete"
 }]
