@@ -43,7 +43,7 @@ foreach ($routeJson as $route) {
 
 function getAuth()
 {
-    $token = str_replace("bearer ", "", $_SERVER['HTTP_AUTHORIZATION']);
+    $token = str_replace("Bearer ", "", $_SERVER['HTTP_AUTHORIZATION']);
     if (!empty($token)) {
         $decode = JWT\JWT::decode($token, new \JWT\Key("dz14a68df4s3f4e6z8f4ze681", 'HS256'));
         return $decode;

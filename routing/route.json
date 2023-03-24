@@ -61,4 +61,29 @@
     "method": "DELETE",
     "controller": "Product",
     "action": "delete"
+},  {
+    "path": "/Post",
+    "method": "GET",
+    "controller": "Product",
+    "action": "getAll"
+}, {
+    "path": "/Post/([0-9]*)",
+    "method": "GET",
+    "controller": "Product",
+    "action": "getOne"
+}, {
+    "path": "/Post",
+    "method": "POST",
+    "controller": "Product",
+    "action": "create"
+}, {
+    "path": "/Post",
+    "method": "PUT",
+    "controller": "Product",
+    "action": "update"
+}, {
+    "path": "/Post",
+    "method": "DELETE",
+    "controller": "Product",
+    "action": "delete"
 }]
