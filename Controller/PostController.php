@@ -29,19 +29,28 @@ class PostController extends Controller
 
     function create()
     {
-        $post = new \stdClass();
-        $post->name = $_POST["name"];
-        $post->content = $_POST["content"];
-        $post->date = $_POST["date"];
-        // $post->login = $_POST["login"];
-        // $post->password = $_POST["password"];
-        $this->postManager->create($post);
+        $auth = getAuth();
+        if($auth){
+            $post = new \stdClass();
+            $post->name = $_POST["name"];
+            $post->content = $_POST["content"];
+            $post->creatorID = $auth->id;
+            $post->date = $_POST["date"];
+            // $post->login = $_POST["login"];
+            // $post->password = $_POST["password"];
+            $this->postManager->create($post);
 
-        $this->JSONMessage("Post créé");
+            $this->JSONMessage("Post créé");
+        }else{
+            $this->JSONMessage("Vous n'êtes pas authentifié.");
+        }
     }
 
     function update($id)
     {
+        $auth = getAuth();
+        if($auth){
+            if($auth->id == $creatorID){
                 $data = json_decode(file_get_contents("php://input"));
                 $post = new \stdClass();
                 $post->id = $id;
@@ -54,7 +63,10 @@ class PostController extends Controller
                 } else {
                     $this->JSONMessage("Post non trouvé");
                 }
-        
+            }else{
+                $this->JSONMessage("Vous n'avez pas les droits pour modifier cet utilisateur");
+            }
+        }
     }
 
     function delete($id)
