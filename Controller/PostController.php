@@ -71,10 +71,15 @@ class PostController extends Controller
 
     function delete($id)
     {
-        if ($this->postManager->delete($id)) {
-            $this->JSONMessage("Post supprimé");
-        } else {
-            $this->JSONMessage("Post non trouvé");
+        $auth = getAuth();
+        if($auth){
+            if($auth->id == $creatorID){
+                if ($this->postManager->delete($id)) {
+                    $this->JSONMessage("Post supprimé");
+                } else {
+                    $this->JSONMessage("Post non trouvé");
+                }
+            }
         }
     }   
 }
